@@ -6,9 +6,9 @@
  */
 
 
-import processing.serial.*;
 
-Serial myPort;  // Create object from Serial class
+
+  // Create object from Serial class
         // Data received from the serial port
 
 void setup() 
@@ -27,5 +27,18 @@ void setup()
 void draw() {
 
 
-myPort.write("4,2,6,255,0,0");
+
+}
+int i = 0;
+void mouseClicked(){
+ i++;
+//myPort.write("1,0,10,255,255,255\n");
+myPort.write("2,0,10,"+i+","+i*5+","+ i*10+"\n");
+//myPort.write("3,0,10,255,255,255\n");
+//myPort.write("4,0,10,255,255,255\n");
+//myPort.write("5,0,10,255,255,255\n"); 
+  println(i);
+  if(i >255){
+    i = 0;
+  }
 }
