@@ -52,18 +52,19 @@ void loop() {
     String g = str.substring(cI4 + 1, cI5);
     String b = str.substring(cI5 + 1); //To the end of the string
 
-    Serial.println("X: "+ x+" Start: "+start+ " End: "+end_+ " Red: "+r+" Green: "+g+" Red: "+b);
+    Serial.println("X: " + x + " Start: " + start + " End: " + end_ + " Red: " + r + " Green: " + g + " Red: " + b);
     lightLEDStrip(atoi(x.c_str()), atoi(start.c_str()), atoi(end_.c_str()), atoi(r.c_str()),  atoi(g.c_str()), atoi(b.c_str()));
 
   }
+  delay(50);
 }
 
 void lightLEDStrip(int x, int start, int end_, int r, int g, int b) {
-  if(start < 0){
+  if (start < 0) {
     start = 0;
   }
   if (x == 1) {
-    if(end_ > NUM_LEDS_1){
+    if (end_ > NUM_LEDS_1) {
       end_ = NUM_LEDS_1;
     }
     for (int i = start; i < end_; i++) {
@@ -72,7 +73,7 @@ void lightLEDStrip(int x, int start, int end_, int r, int g, int b) {
     }
   }
   if (x == 2) {
-    if(end_ > NUM_LEDS_2){
+    if (end_ > NUM_LEDS_2) {
       end_ = NUM_LEDS_2;
     }
     for (int i = start; i < end_; i++) {
@@ -81,7 +82,7 @@ void lightLEDStrip(int x, int start, int end_, int r, int g, int b) {
     }
   }
   if (x == 3) {
-    if(end_ > NUM_LEDS_3){
+    if (end_ > NUM_LEDS_3) {
       end_ = NUM_LEDS_3;
     }
     for (int i = start; i < end_; i++) {
@@ -90,7 +91,7 @@ void lightLEDStrip(int x, int start, int end_, int r, int g, int b) {
     }
   }
   if (x == 4) {
-    if(end_ > NUM_LEDS_4){
+    if (end_ > NUM_LEDS_4) {
       end_ = NUM_LEDS_4;
     }
     for (int i = start; i < end_; i++) {
@@ -99,7 +100,7 @@ void lightLEDStrip(int x, int start, int end_, int r, int g, int b) {
     }
   }
   if (x == 5) {
-    if(end_ > NUM_LEDS_5){
+    if (end_ > NUM_LEDS_5) {
       end_ = NUM_LEDS_5;
     }
     for (int i = start; i < end_; i++) {
@@ -109,25 +110,25 @@ void lightLEDStrip(int x, int start, int end_, int r, int g, int b) {
   }
 }
 
-void setAllToBlack(){
+void setAllToBlack() {
   for (int i = 0; i < NUM_LEDS_1; i++) {
-    road[i].setRGB(0,0,0);
+    road[i].setRGB(0, 0, 0);
     FastLED.show();
   }
   for (int i = 0; i < NUM_LEDS_2; i++) {
-    crosswalk[i].setRGB(0,0,0);
+    crosswalk[i].setRGB(0, 0, 0);
     FastLED.show();
   }
   for (int i = 0; i < NUM_LEDS_3; i++) {
-    water_tower[i].setRGB(0,0,0);
+    water_tower[i].setRGB(0, 0, 0);
     FastLED.show();
   }
   for (int i = 0; i < NUM_LEDS_4; i++) {
-    building[i].setRGB(0,0,0);
+    building[i].setRGB(0, 0, 0);
     FastLED.show();
   }
   for (int i = 0; i < NUM_LEDS_5; i++) {
-    power_plant[i].setRGB(0,0,0);
+    power_plant[i].setRGB(0, 0, 0);
     FastLED.show();
   }
 }
