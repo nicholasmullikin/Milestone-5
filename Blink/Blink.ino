@@ -1,36 +1,43 @@
 #include "FastLED.h"
 
 // How many leds in your strip?
-#define NUM_LEDS_1 24
-#define NUM_LEDS_2 4
-#define NUM_LEDS_3 9
-#define NUM_LEDS_4 9
-#define NUM_LEDS_5 8
+#define NUM_LEDS_1 3 //crosswalk
+#define NUM_LEDS_2 24 //road
+#define NUM_LEDS_3 3 //other_building
+#define NUM_LEDS_4 9 //water tower
+#define NUM_LEDS_5 4 //building
+#define NUM_LEDS_6 8 //power_plant
 
-#define DATA_PIN_1 5
-#define DATA_PIN_2 2
+
+#define DATA_PIN_1 2
+#define DATA_PIN_2 3
 #define DATA_PIN_3 4
-#define DATA_PIN_4 6
-#define DATA_PIN_5 3
+#define DATA_PIN_4 5
+#define DATA_PIN_5 6
+#define DATA_PIN_6 7
+
 
 
 // Define the array of leds
-CRGB road[NUM_LEDS_1];
-CRGB crosswalk[NUM_LEDS_2];
-CRGB water_tower[NUM_LEDS_3];
-CRGB building[NUM_LEDS_4];
-CRGB power_plant[NUM_LEDS_5];
+CRGB crosswalk[NUM_LEDS_1];
+CRGB road[NUM_LEDS_2];
+CRGB other_building[NUM_LEDS_3];
+CRGB water_tower[NUM_LEDS_4];
+CRGB building[NUM_LEDS_5];
+CRGB power_plant[NUM_LEDS_6];
 
 void setup() {
 
 
   Serial.begin(9600);
   FastLED.setBrightness( 100 );
-  FastLED.addLeds<WS2812B, DATA_PIN_1, GRB>(road, NUM_LEDS_1);
-  FastLED.addLeds<WS2812B, DATA_PIN_2, GRB>(crosswalk, NUM_LEDS_2);
-  FastLED.addLeds<WS2812B, DATA_PIN_3, GRB>(water_tower, NUM_LEDS_3);
-  FastLED.addLeds<WS2812B, DATA_PIN_4, GRB>(building, NUM_LEDS_4);
-  FastLED.addLeds<WS2812B, DATA_PIN_5, GRB>(power_plant, NUM_LEDS_5);
+  FastLED.addLeds<WS2812B, DATA_PIN_1, GRB>(crosswalk, NUM_LEDS_1);
+  FastLED.addLeds<WS2812B, DATA_PIN_2, GRB>(road, NUM_LEDS_2);
+  FastLED.addLeds<WS2812B, DATA_PIN_3, GRB>(other_building, NUM_LEDS_3);
+  FastLED.addLeds<WS2812B, DATA_PIN_4, GRB>(water_tower, NUM_LEDS_4);
+  FastLED.addLeds<WS2812B, DATA_PIN_5, GRB>(building, NUM_LEDS_5);
+  FastLED.addLeds<WS2812B, DATA_PIN_6, GRB>(power_plant, NUM_LEDS_6);
+
 }
 String str;
 void loop() {
@@ -68,7 +75,7 @@ void lightLEDStrip(int x, int start, int end_, int r, int g, int b) {
       end_ = NUM_LEDS_1;
     }
     for (int i = start; i < end_; i++) {
-      road[i].setRGB(r, g, b);
+      crosswalk[i].setRGB(r, g, b);
       FastLED.show();
     }
   }
@@ -77,7 +84,7 @@ void lightLEDStrip(int x, int start, int end_, int r, int g, int b) {
       end_ = NUM_LEDS_2;
     }
     for (int i = start; i < end_; i++) {
-      crosswalk[i].setRGB(r, g, b);
+      road[i].setRGB(r, g, b);
       FastLED.show();
     }
   }
@@ -86,7 +93,7 @@ void lightLEDStrip(int x, int start, int end_, int r, int g, int b) {
       end_ = NUM_LEDS_3;
     }
     for (int i = start; i < end_; i++) {
-      water_tower[i].setRGB(r, g, b);
+      other_building[i].setRGB(r, g, b);
       FastLED.show();
     }
   }
@@ -95,13 +102,22 @@ void lightLEDStrip(int x, int start, int end_, int r, int g, int b) {
       end_ = NUM_LEDS_4;
     }
     for (int i = start; i < end_; i++) {
-      building[i].setRGB(r, g, b);
+      water_tower[i].setRGB(r, g, b);
       FastLED.show();
     }
   }
   if (x == 5) {
     if (end_ > NUM_LEDS_5) {
       end_ = NUM_LEDS_5;
+    }
+    for (int i = start; i < end_; i++) {
+      building[i].setRGB(r, g, b);
+      FastLED.show();
+    }
+  }
+  if (x == 6) {
+    if (end_ > NUM_LEDS_6) {
+      end_ = NUM_LEDS_6;
     }
     for (int i = start; i < end_; i++) {
       power_plant[i].setRGB(r, g, b);
